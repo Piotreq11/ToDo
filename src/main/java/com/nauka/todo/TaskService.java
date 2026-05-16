@@ -12,6 +12,7 @@ public class TaskService {
 
     public void dodajZadanie(Task task){
         zadania.add(task);
+        System.out.println("Dodano nowe zadanie o ID: "+ task.getId());
     }
 
     public ArrayList<Task> getZadania() {
@@ -19,5 +20,9 @@ public class TaskService {
     }
     public void usunZadanie(Task task){
         zadania.remove(task);
+    }
+
+    public void zrobZadanie(int id){
+        zadania.get(id).setCzyZrobione(true);
     }
 }
