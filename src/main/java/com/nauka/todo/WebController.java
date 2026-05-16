@@ -25,21 +25,8 @@ public class WebController {
     }
 
     @PostMapping("/")
-    public String pobierzWartosci(@RequestParam String tresc, @RequestParam String priorytet) {
-        switch (priorytet) {
-            case "MIN":
-                taskService.dodajZadanie(new Task(tresc, Priority.MIN, false));
-                break;
-            case "MED":
-                taskService.dodajZadanie(new Task(tresc, Priority.MED, false));
-                break;
-            case "MAX":
-                taskService.dodajZadanie(new Task(tresc, Priority.MAX, false));
-                break;
-            default:
-                taskService.dodajZadanie(new Task(tresc, Priority.MIN, false));
-                break;
-        }
+    public String pobierzWartosci(@RequestParam String tresc, @RequestParam Priority priorytet) {
+        taskService.dodajZadanie(new Task(tresc, priorytet, false));
         return "redirect:/";
     }
 

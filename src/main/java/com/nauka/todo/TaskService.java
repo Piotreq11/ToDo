@@ -31,14 +31,12 @@ public class TaskService {
                 System.out.println("Zadanie o id: " + id + " zostało usunięte.");
                 break;
             }
-
-
         }
     }
 
     public ArrayList<Task> getZrobione() {
         ArrayList<Task> zrobione = new ArrayList<>();
-        for (Task t : getZadania()) {
+        for (Task t : zadania) {
             if (t.isCzyZrobione())
                 zrobione.add(t);
         }
@@ -50,7 +48,7 @@ public class TaskService {
             if (task.getId() == id) {
                 task.setCzyZrobione(true);
                 System.out.println("Zaktualizowano zadanie o id: " + task.getId() + " status zadania: " + task.isCzyZrobione());
-                break; // Znaleźliśmy zadanie, przerywamy pętlę
+                break;
             }
         }
     }

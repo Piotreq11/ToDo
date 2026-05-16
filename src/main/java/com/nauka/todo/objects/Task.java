@@ -7,7 +7,7 @@ public class Task {
     private int id;
     private String tresc;
     private Priority priorytet;
-    boolean czyZrobione;
+    private boolean czyZrobione;
 
     public Task(String tresc, Priority priorytet, boolean czyZrobione) {
         this.id = counter++;
