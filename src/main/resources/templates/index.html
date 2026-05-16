@@ -7,38 +7,47 @@
     <title>Do zrobienia</title>
 </head>
 <body>
-    <div id="header">
-        <h1>Do zrobienia</h1>
-    </div>
-    <div id="container">
-        <form action="/" method="post">
-            <label for="tresc">Nowe zadanie:</label>
-            <input type="text" name="tresc" id="tresc" required>
-            <select name="priorytet" id="priorytet">
-                <option value="MIN">Niski</option>
-                <option value="MED">Średni</option>
-                <option value="MAX">Wysoki</option>
-            </select>
+<div id="header">
+    <h1>Do zrobienia</h1>
+</div>
+<div id="container">
+    <form action="/" method="post">
+        <label for="tresc">Nowe zadanie:</label>
+        <input type="text" name="tresc" id="tresc" required>
+        <select name="priorytet" id="priorytet">
+            <option value="MIN">Niski</option>
+            <option value="MED">Średni</option>
+            <option value="MAX">Wysoki</option>
+        </select>
 
-            <button type="submit">Dodaj</button>
-        </form>
-        <div id="ToDo">
-            <h2>Do zrobienia:</h2>
-            <ul>
-                <li th:each="zadanie : ${zadania}">
-                    <span th:text="${zadanie.tresc}"></span>
-                    <span th:text="${zadanie.priorytet}"></span>
-                    <form th:action="@{/zrob/{id}(id=${zadanie.id})}" method="post" style="display:inline;">
-                        <button type="submit">Zrobione</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-        <div id="Done">
-
-        </div>
+        <button type="submit">Dodaj</button>
+    </form>
+    <div id="ToDo">
+        <h2>Do zrobienia:</h2>
+        <ul>
+            <li th:each="zadanie : ${zadania}">
+                <span th:text="${zadanie.tresc}"></span>
+                <span th:text="${zadanie.priorytet}"></span>
+                <form th:action="@{/zrob/{id}(id=${zadanie.id})}" method="post" style="display:inline;">
+                    <button type="submit">Zrobione</button>
+                </form>
+            </li>
+        </ul>
     </div>
-    <div id="footer">
-        <p>&copy; 2026 ToDo App. Wszystkie prawa zastrzeżone.</p>
+    <div id="Done">
+        <h2>Zrobione:</h2>
+        <ul>
+            <li th:each="zadanie : ${zrobione}">
+                <span th:text="${zadanie.tresc}"></span>
+                <span th:text="${zadanie.priorytet}"></span>
+                <form th:action="@{/usun/{id}(id=${zadanie.id})}" method="post" style="display:inline;">
+                    <button type="submit">Usuń</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="footer">
+    <p>&copy; 2026 ToDo App. Wszystkie prawa zastrzeżone.</p>
 </body>
 </html>

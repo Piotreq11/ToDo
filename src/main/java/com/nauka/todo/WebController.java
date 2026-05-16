@@ -13,19 +13,20 @@ public class WebController {
 
     private final TaskService taskService;
 
-    public WebController(TaskService taskService){
-        this.taskService=taskService;
+    public WebController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model) {
         model.addAttribute("zadania", taskService.getZadania());
+        model.addAttribute("zrobione", taskService.getZrobione());
         return "index";
     }
 
     @PostMapping("/")
-    public String pobierzWartosci(@RequestParam String tresc, @RequestParam String priorytet){
-        switch(priorytet){
+    public String pobierzWartosci(@RequestParam String tresc, @RequestParam String priorytet) {
+        switch (priorytet) {
             case "MIN":
                 taskService.dodajZadanie(new Task(tresc, Priority.MIN, false));
                 break;
@@ -42,9 +43,15 @@ public class WebController {
         return "redirect:/";
     }
 
-    @GetMapping("/zrob/{id}")
-    public String zrobZadanie(@PathVariable("id") int id){
+    @PostMapping("/zrob/{id}")
+    public String zrobZadanie(@PathVariable("id") int id) {
         taskService.zrobZadanie(id);
+        return "redirect:/";
+    }
+
+    @PostMapping("/usun/{id}")
+    public String usunZadanie(@PathVariable("id") int id){
+        taskService.usunZadanie(id);
         return "redirect:/";
     }
 }
